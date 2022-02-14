@@ -1,0 +1,25 @@
+﻿@model MidLabTaskCRUD.Models.Database.News
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h1>Create</h1>
+
+<form action="/News/Create" method="post" class="card">
+    <h2>Title</h2>
+    <input type="text" name="Title" value="@Model.Title" placeholder="Title" class="form-control" />
+    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+    <h2>Description</h2>
+    <input type="text" name="Description" value="@Model.Description" placeholder="Description" class="form-control" />
+    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+    <h2>Category</h2>
+    <input type="text" name="Category" value="@Model.Category" placeholder="Category" class="form-control" />
+    @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+    <h2>Date</h2>
+    <input type="text" name="PublishDate" value="@Model.PublishDate" placeholder="Date" class="form-control" />
+    @Html.ValidationMessageFor(model => model.PublishDate, "", new { @class = "text-danger" })
+    <input type="submit" value="Submit" />
+
+</form>
+

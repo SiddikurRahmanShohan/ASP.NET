@@ -1,0 +1,47 @@
+﻿@model Test1.Models.Student
+@using System.Configuration;
+@using System.Data.SqlClient;
+@using Test1.Models;
+
+
+@{
+    ViewBag.Title = "StudentList";
+}
+
+<h2>StudentList</h2>
+@{SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        connection.Open();
+        string sql = "SELECT * FROM Students";
+        SqlCommand command = new SqlCommand(sql,connection);
+        List<Student> students = new List<Student>();
+        SqlDataReader reader= command.ExecuteReader();
+        while(reader.Read())
+        {
+            Student student = new Student(){
+                Id = reader["id"].ToString(),
+                Name = reader["name"].ToString(),
+                Dob = reader["dob"].ToString()
+            };
+            students.Add(student);
+        }
+        connection.Close();
+        }
+        <div>
+            <table class="table table-bordered">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Dob</th>
+                </tr>
+                @foreach (Student st in students)
+                {
+                    <tr>
+                        <td>@st.Id</td>
+                        <td>@st.Name</td>
+                        <td>@st.Dob</td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+

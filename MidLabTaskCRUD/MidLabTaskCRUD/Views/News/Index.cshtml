@@ -1,0 +1,42 @@
+﻿
+@model List<MidLabTaskCRUD.Models.Database.News>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Index</h2>
+
+<div>
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>PublishDate</th>
+            <th>Go To</th>
+
+        </tr>
+        @foreach (var ns in Model)
+        {
+            <tr>
+                <td>@ns.Id</td>
+                <td>@ns.Title</td>
+                <td>@ns.Description</td>
+                <td>@ns.Category</td>
+                <td>@ns.PublishDate</td>
+                <td><a href="/News/Edit/@ns.Id">Edit</a><p></p> <a href="/News/Delete/@ns.Id">Delete</a></td>
+            </tr>
+        }
+
+    </table>
+</div>
+<form action="/News/Index" method="post" class="card">
+    <input type="text" name="Cat" value="" placeholder="Search by Category" class="form-control" />
+    <input type="text" name="date" value="" placeholder="Search by date" class="form-control" />
+    <input type="submit" value="Search"/>
+
+</form>
+
