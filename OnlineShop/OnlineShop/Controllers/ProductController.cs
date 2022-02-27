@@ -13,7 +13,8 @@ namespace OnlineShop.Controllers
         // GET: /Product/
         EShopEntities db = new EShopEntities();
 
-         [HttpGet]
+        [Authorize] 
+        [HttpGet]
         public ActionResult Index()
         {
             //Session["cart"] == null;
@@ -21,7 +22,8 @@ namespace OnlineShop.Controllers
             return View(data);
         }
 
-         [HttpPost]
+        [Authorize] 
+        [HttpPost]
         public ActionResult Index(string nam, decimal? price)
         {
              if (!price.HasValue && nam == null)

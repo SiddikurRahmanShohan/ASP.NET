@@ -11,11 +11,14 @@ namespace OnlineShop.Models.Database
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Login
     {
         public int Uid { get; set; }
+        [Required]
         public string Username { get; set; }
+        [Required]
         public string Password { get; set; }
         public string Type { get; set; }
         public int Id { get; set; }
