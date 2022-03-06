@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace OnlineShop.Controllers
 {
@@ -32,30 +33,31 @@ namespace OnlineShop.Controllers
 
         public ActionResult Register()
         {
-
-            return View(new User());
+            return View(new UserLoginViewModel());
         }
 
         [HttpPost]
-        public ActionResult Register(UserLoginViewModel u)
+        public ActionResult Register(UserLoginViewModel ulvm)
         {
             if (ModelState.IsValid)
             {
                 User us = new User();
-                us = u.Users;
+                us.Name= ulvm.Name;
+                us.Email = ulvm.Email;
+                us.Address = ulvm.Address;
                 db.Users.Add(us);
                 db.SaveChanges();
                 Login lg = new Login();
-                lg.Uid = (from ui in db.Users where ui.Email == u.Users.Email select ui.Id).FirstOrDefault();
-                lg.Username = u.Login.Username;
-                lg.Password = u.Login.Password;
+                lg.Uid = (from ui in db.Users where ui.Email == ulvm.Email select ui.Id).FirstOrDefault();
+                lg.Username = ulvm.Username;
+                lg.Password = ulvm.Password;
                 lg.Type = "customer";
                 db.Logins.Add(lg);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
-            return View(u);
+            return View(ulvm);
         }
         [HttpGet]
         public ActionResult Login()
@@ -72,7 +74,7 @@ namespace OnlineShop.Controllers
                         select e).FirstOrDefault();
             if (data != null)
             {
-               // FormsAuthentication.SetAuthCookie(data.Username, false);
+               FormsAuthentication.SetAuthCookie(data.Username, false);
                 //Session["role"] = data.Type;
                 return RedirectToAction("Index", "Product");
             }
