@@ -1,0 +1,19 @@
+WebAPI2
+   ->Framework Provided By ASP.NET
+                          -> Model
+                          -> Web Config
+                          -> Controller 
+                                         -> API Comtroller
+                          -> WebAPIConfig
+                                         -> api/{controller}/{id}
+                                         *by default api use request varb(GET,POST,PUT,DELETE) as a method name
+                          -> global.aspx
+Tier/Layer Architecture
+SOLID
+    ->Repo
+         ->Front End
+    ->Singlton
+Interface
+  -> Front APP Location
+  -> Backend APP Location(API based APP)
+

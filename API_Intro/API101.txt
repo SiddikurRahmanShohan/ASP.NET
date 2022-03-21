@@ -1,0 +1,8 @@
+*AJAX is a techonology
+         ->Type of javascript technology for serve side
+
+1. Provide URL
+2. Define Request Method
+            -> GET,POST e.t.c
+3. Define Request Pramiter (How Server will recive data)
+4.Define Reposnse Method(How user will recive data)
