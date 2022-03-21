@@ -38,8 +38,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -73,17 +80,68 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Models\Database\UMSDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UMSDB.Context.cs</LastGenOutput>
+      <DependentUpon>UMSDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Database\UMSDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UMSDB.edmx</DependentUpon>
+      <LastGenOutput>UMSDB.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Database\Cours.cs">
+      <DependentUpon>UMSDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Database\Department.cs">
+      <DependentUpon>UMSDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Database\Enroll.cs">
+      <DependentUpon>UMSDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Database\Student.cs">
+      <DependentUpon>UMSDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Database\sysdiagram.cs">
+      <DependentUpon>UMSDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Database\UMSDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UMSDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Database\UMSDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UMSDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Database\UMSDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UMSDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityModel\DepartmentEM.cs" />
+    <Compile Include="Models\EntityModel\StudentEM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <EntityDeploy Include="Models\Database\UMSDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>UMSDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Database\UMSDB.edmx.diagram">
+      <DependentUpon>UMSDB.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -93,8 +151,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
