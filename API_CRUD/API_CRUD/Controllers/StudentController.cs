@@ -33,6 +33,28 @@ namespace API_CRUD.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
+        [Route("api/student/addstudent")]//coustom routing
+        [HttpPost] //Bind for Post only
+        public HttpResponseMessage AddStudent(Student student)
+        {
+            var si = db.Students.Add(student);
+            db.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK, (si.Name + " has been Added" + " ID: " + si.Id));
+        }
+
+        [Route("api/student/updatestudent/{id}")]//coustom routing
+        [HttpPost] //Bind for Post only
+        public HttpResponseMessage UpdateStudent(int id, Student student)
+        {
+            var st = db.Students.Find(id);
+            student.Id = st.Id;
+            st.Name = student.Name;
+            st.DeptId = student.DeptId;
+            db.Entry(st).CurrentValues.SetValues(student);
+            db.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK, (st.Id + " has been Updated"));
+        }
+
         [Route("api/student/getstbyid/{id}")]//coustom routing
         [HttpGet] //Bind for Get only
         public HttpResponseMessage GetStudentById(int id)

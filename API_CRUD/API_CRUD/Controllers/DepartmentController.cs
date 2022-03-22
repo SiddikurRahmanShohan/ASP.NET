@@ -24,18 +24,19 @@ namespace API_CRUD.Controllers
                 DepartmentEM department = new DepartmentEM();
                 department.Id = dep.Id;
                 department.Name = dep.Name;
-                var sdata = (from st in db.Students where st.DeptId == dep.Id select st).ToList();
+                var sdata = (from st in db.Students where st.DeptId.Equals(dep.Id) select st).ToList();
+                List<StudentEM> students = new List<StudentEM>();
                 foreach(var s in sdata)
                 {
-                    StudentEM student = new StudentEM() { 
-                        Id = s.Id,
-                        Name = s.Name,
-                        DeptId = s.DeptId,
-                        DeptName = s.Department.Name,
-                    };
-                    department.Students.Add(student);
+                    StudentEM student = new StudentEM();
+                    student.Id = s.Id;
+                    student.Name = s.Name;
+                    student.DeptId = s.DeptId;
+                    student.DeptName = s.Department.Name;
+                    students.Add(student);
 
                 }
+                department.Students = students;
                 departments.Add(department);
             }
 
@@ -56,6 +57,27 @@ namespace API_CRUD.Controllers
             var data = new JavaScriptSerializer().Serialize(department);
 
             return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
+        [Route("api/department/adddepartment")]//coustom routing
+        [HttpPost] //Bind for Post only
+        public HttpResponseMessage AddDepartment(Department department)
+        {
+            var di = db.Departments.Add(department);
+            db.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK, (di.Name +" has been Added"+" ID: "+di.Id));
+        }
+
+        [Route("api/department/updatedepartment/{id}")]//coustom routing
+        [HttpPost] //Bind for Post only
+        public HttpResponseMessage UpdateDepartment(int id, Department department)
+        {
+            var dep = db.Departments.Find(id);
+            department.Id = dep.Id;
+            dep.Name = department.Name;
+            db.Entry(dep).CurrentValues.SetValues(department);
+            db.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK, (dep.Id + " has been Updated"));
         }
 
         [Route("api/department/deletedeptbyid/{id}")]//coustom routing
