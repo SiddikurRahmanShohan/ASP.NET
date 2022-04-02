@@ -19,6 +19,6 @@ namespace BusinessLayer.Entities
         public int UserId { get; set; }
 
         public int CategoryId { get; set; }
-        public Opinion Comments { get; set; }
+        public List<OpinionModel> Comments { get; set; }
     }
 }

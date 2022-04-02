@@ -22,16 +22,16 @@ namespace NewsPortalAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        //[Route("api/news/getnews/{id}")]//coustom routing
-        //[HttpGet] //Bind for Get only
-        //public HttpResponseMessage GetNews(int id)
-        //{
-        //    var nws = BusinessLayer.Services.NewsService.Get(id);
+        [Route("api/news/getnews/{id}")]//coustom routing
+        [HttpGet] //Bind for Get only
+        public HttpResponseMessage GetNews(int id)
+        {
+            var nws = BusinessLayer.Services.NewsService.Get(id);
 
-        //    var data = new JavaScriptSerializer().Serialize(nws);
+            var data = new JavaScriptSerializer().Serialize(nws);
 
-        //    return Request.CreateResponse(HttpStatusCode.OK, data);
-        //}
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
 
         [Route("api/news/addnews")]//coustom routing
         [HttpPost] //Bind for Get only
