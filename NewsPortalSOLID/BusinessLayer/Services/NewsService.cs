@@ -58,6 +58,146 @@ namespace BusinessLayer.Services
 
         }
 
+        public static List<NewsModel> SearchNews(Search obj)
+        {
+            if (obj.cname != null && obj.sdate != null)
+            {
+                var nwses = FactoryDataAccess.SearchNews().GetNewsByCatDate(obj.cname, obj.sdate.Date);
+                List<NewsModel> data = new List<NewsModel>();
+                foreach (var n in nwses)
+                {
+                    NewsModel news = new NewsModel();
+                    news.NewsId = n.NewsId;
+                    news.Title = n.Title;
+                    news.Description = n.Description;
+                    news.PostDate = n.PostDate;
+                    User usr = new User();
+                    var postBy = FactoryDataAccess.UserDataAccess().Get(n.PostedById);
+                    usr.FullName = postBy.FullName;
+                    usr.Occupation = postBy.Occupation;
+                    usr.UserId = postBy.UserId;
+                    news.PostedBy = usr;
+                    Category cate = new Category();
+                    var c = FactoryDataAccess.CategoryDataAccess().Get(n.CategoryId);
+                    cate.CategoryId = c.CategoryId;
+                    cate.CategoryName = c.CategoryName;
+                    news.Division = cate;
+                    List<OpinionModel> opinions = new List<OpinionModel>();
+                    var odata = FactoryDataAccess.NewsOpinionDataAccess().GetByNews(n.NewsId);
+                    foreach (var o in odata)
+                    {
+                        OpinionModel opinion = new OpinionModel();
+                        opinion.OpinionId = o.OpinionId;
+                        opinion.Comment = o.Comment;
+                        opinion.Reaction = o.Reaction;
+                        User us = new User();
+                        var u = FactoryDataAccess.UserDataAccess().Get(o.UserId);
+                        us.UserId = u.UserId;
+                        us.FullName = u.FullName;
+                        us.Occupation = u.Occupation;
+                        opinion.UserDetail = us;
+                        opinions.Add(opinion);
+
+                    }
+                    news.Comments = opinions;
+                    data.Add(news);
+
+                }
+                return data;
+            }
+            else if (obj.cname != null && obj.sdate == null)
+            {
+                var nwses = FactoryDataAccess.SearchNews().GetNewsByCat(obj.cname);
+                List<NewsModel> data = new List<NewsModel>();
+                foreach (var n in nwses)
+                {
+                    NewsModel news = new NewsModel();
+                    news.NewsId = n.NewsId;
+                    news.Title = n.Title;
+                    news.Description = n.Description;
+                    news.PostDate = n.PostDate;
+                    User usr = new User();
+                    var postBy = FactoryDataAccess.UserDataAccess().Get(n.PostedById);
+                    usr.FullName = postBy.FullName;
+                    usr.Occupation = postBy.Occupation;
+                    usr.UserId = postBy.UserId;
+                    news.PostedBy = usr;
+                    Category cate = new Category();
+                    var c = FactoryDataAccess.CategoryDataAccess().Get(n.CategoryId);
+                    cate.CategoryId = c.CategoryId;
+                    cate.CategoryName = c.CategoryName;
+                    news.Division = cate;
+                    List<OpinionModel> opinions = new List<OpinionModel>();
+                    var odata = FactoryDataAccess.NewsOpinionDataAccess().GetByNews(n.NewsId);
+                    foreach (var o in odata)
+                    {
+                        OpinionModel opinion = new OpinionModel();
+                        opinion.OpinionId = o.OpinionId;
+                        opinion.Comment = o.Comment;
+                        opinion.Reaction = o.Reaction;
+                        User us = new User();
+                        var u = FactoryDataAccess.UserDataAccess().Get(o.UserId);
+                        us.UserId = u.UserId;
+                        us.FullName = u.FullName;
+                        us.Occupation = u.Occupation;
+                        opinion.UserDetail = us;
+                        opinions.Add(opinion);
+
+                    }
+                    news.Comments = opinions;
+                    data.Add(news);
+
+                }
+                return data;
+            }
+            else {
+                var nwses = FactoryDataAccess.SearchNews().GetNewsByDate(obj.sdate.Date);
+                List<NewsModel> data = new List<NewsModel>();
+                foreach (var n in nwses)
+                {
+                    NewsModel news = new NewsModel();
+                    news.NewsId = n.NewsId;
+                    news.Title = n.Title;
+                    news.Description = n.Description;
+                    news.PostDate = n.PostDate;
+                    User usr = new User();
+                    var postBy = FactoryDataAccess.UserDataAccess().Get(n.PostedById);
+                    usr.FullName = postBy.FullName;
+                    usr.Occupation = postBy.Occupation;
+                    usr.UserId = postBy.UserId;
+                    news.PostedBy = usr;
+                    Category cate = new Category();
+                    var c = FactoryDataAccess.CategoryDataAccess().Get(n.CategoryId);
+                    cate.CategoryId = c.CategoryId;
+                    cate.CategoryName = c.CategoryName;
+                    news.Division = cate;
+                    List<OpinionModel> opinions = new List<OpinionModel>();
+                    var odata = FactoryDataAccess.NewsOpinionDataAccess().GetByNews(n.NewsId);
+                    foreach (var o in odata)
+                    {
+                        OpinionModel opinion = new OpinionModel();
+                        opinion.OpinionId = o.OpinionId;
+                        opinion.Comment = o.Comment;
+                        opinion.Reaction = o.Reaction;
+                        User us = new User();
+                        var u = FactoryDataAccess.UserDataAccess().Get(o.UserId);
+                        us.UserId = u.UserId;
+                        us.FullName = u.FullName;
+                        us.Occupation = u.Occupation;
+                        opinion.UserDetail = us;
+                        opinions.Add(opinion);
+
+                    }
+                    news.Comments = opinions;
+                    data.Add(news);
+
+                }
+                return data;
+            }
+            
+
+        }
+
         public static NewsModel Get(int id)
         {
             var nws = FactoryDataAccess.NewsDataAccess().Get(id);

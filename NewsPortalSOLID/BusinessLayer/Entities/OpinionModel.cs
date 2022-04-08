@@ -10,6 +10,10 @@ namespace BusinessLayer.Entities
     public class OpinionModel
     {
         public int OpinionId { get; set; }
+
+        public int UserId { get; set; }
+
+        public int NewsId { get; set; }
         public string Comment { get; set; }
         public string Reaction { get; set; }
         public News NewsDetail { get; set; }

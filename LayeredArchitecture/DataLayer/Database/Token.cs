@@ -12,20 +12,14 @@ namespace DataLayer.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Student
+    public partial class Token
     {
-        public Student()
-        {
-            this.Enrolls = new HashSet<Enroll>();
-            this.Tokens = new HashSet<Token>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int DeptId { get; set; }
+        public string TokenKey { get; set; }
+        public System.DateTime CreatedAt { get; set; }
+        public Nullable<System.DateTime> ExpiryDate { get; set; }
+        public int Uid { get; set; }
     
-        public virtual Department Department { get; set; }
-        public virtual ICollection<Enroll> Enrolls { get; set; }
-        public virtual ICollection<Token> Tokens { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

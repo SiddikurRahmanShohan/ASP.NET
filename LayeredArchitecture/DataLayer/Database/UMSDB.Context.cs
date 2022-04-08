@@ -30,5 +30,6 @@ namespace DataLayer.Database
         public virtual DbSet<Enroll> Enrolls { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Token> Tokens { get; set; }
     }
 }

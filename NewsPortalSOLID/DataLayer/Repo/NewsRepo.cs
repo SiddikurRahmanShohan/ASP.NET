@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repo
 {
-    public class NewsRepo : IRepository<News, int>
+    public class NewsRepo : IRepository<News, int>, ISearch<string, DateTime>
     {
         private NewsPortalEntities db;
         public NewsRepo(NewsPortalEntities db) { this.db = db; }
@@ -27,6 +27,24 @@ namespace DataLayer.Repo
         public List<News> Get()
         {
             return db.Newses.ToList();
+        }
+
+        public List<News> GetNewsByCatDate(string cat, DateTime dat)
+        {
+            var result = (from n in db.Newses where (n.Category.CategoryName.Contains(cat) && n.PostDate.Equals(dat)) select n).ToList();
+            return result;
+        }
+
+        public List<News> GetNewsByCat(string cat)
+        {
+            var result = (from n in db.Newses where n.Category.CategoryName.Contains(cat) select n).ToList();
+            return result;
+        }
+
+        public List<News> GetNewsByDate(DateTime dat)
+        {
+            var result = (from n in db.Newses where n.PostDate.Equals(dat) select n).ToList();
+            return result;
         }
 
         public bool Edit(News obj)

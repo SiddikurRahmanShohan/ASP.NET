@@ -11,11 +11,22 @@ namespace NewsPortalAPI.Controllers
 {
     public class NewsController : ApiController
     {
-        [Route("api/news/getnewes")]//coustom routing
+        [Route("api/news/getnewses")]//coustom routing
         [HttpGet] //Bind for Get only
         public HttpResponseMessage GetNewses()
         {
             var nwses = BusinessLayer.Services.NewsService.Get();
+
+            var data = new JavaScriptSerializer().Serialize(nwses);
+
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
+        [Route("api/news/searchnewes")]//coustom routing
+        [HttpGet] //Bind for Get only
+        public HttpResponseMessage SearchNewses(Search obj)
+        {
+            var nwses = BusinessLayer.Services.NewsService.SearchNews(obj);
 
             var data = new JavaScriptSerializer().Serialize(nwses);
 
