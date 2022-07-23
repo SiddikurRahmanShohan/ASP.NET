@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4e40c76631da44bd90a78cdd2041ff91" Name="Diagram1">
+        <EntityTypeShape EntityType="Flight_ManagementModel.AgeClassEnum" Width="1.5" PointX="8.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Flight_ManagementModel.City" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Flight_ManagementModel.EmailVerifyToken" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Flight_ManagementModel.Family" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Flight_ManagementModel.Payment" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Flight_ManagementModel.PurchasedTicket" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Flight_ManagementModel.SeatClassEnum" Width="1.5" PointX="8.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Flight_ManagementModel.SeatInfo" Width="1.5" PointX="10.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Flight_ManagementModel.Stoppage" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Flight_ManagementModel.sysdiagram" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Flight_ManagementModel.Transport" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Flight_ManagementModel.TransportSchedule" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Flight_ManagementModel.UserRoleEnum" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Flight_ManagementModel.User" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_SeatInfos_AgeClassEnums" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_Stopages_Cities" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_Users_Cities" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_EmailVerifyTokens_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_Users_Families" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_Payments_PurchasedTickets" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_Payments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_Payments_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_PurchasedTickets_Stopages" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_PurchasedTickets_Stopages1" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_PurchasedTickets_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_Seat_Infos_Purchased_Tickets" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_SeatInfos_SeatClassEnums" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_SeatInfos_Transports" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_TransportSchedules_Stopages" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_TransportSchedules_Stopages1" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_Transports_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_TransportSchedules_Transports" ManuallyRouted="false" />
+        <AssociationConnector Association="Flight_ManagementModel.FK_Users_UserRoleEnums" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

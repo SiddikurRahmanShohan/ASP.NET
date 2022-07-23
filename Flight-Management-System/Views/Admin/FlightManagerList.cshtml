@@ -1,0 +1,48 @@
+﻿@model List<Flight_Management_System.Models.AdminEntities.UserModel>
+@{
+    ViewBag.Title = "FlightManagerList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>FlightManagerList</h2>
+
+<form action="/Admin/FlightManagerList" method="post">
+
+    <table>
+        <tr>
+            <td><input type="text" name="Uname" /></td>
+            <td><input type="submit" value="Search Fight Manager" /></td>
+        </tr>
+    </table>
+
+</form>
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Operation</th>
+    </tr>
+
+    @foreach (var u in Model)
+    {
+
+        <tr>
+            <td>@u.Name</td>
+            <td><a href="/Admin/UserDetails/@u.Id">@u.Username</a></td>
+            @if (u.PurchasedTickets.Count() > 0)
+            {
+                <td><a href="/Admin/CreatedSchedule/@u.Id" class="btn btn-success">Created Schedule List</a></td>
+            }
+            else
+            {
+                <td>No Schedule Create</td>
+            }
+
+        </tr>
+
+    }
+
+
+</table>

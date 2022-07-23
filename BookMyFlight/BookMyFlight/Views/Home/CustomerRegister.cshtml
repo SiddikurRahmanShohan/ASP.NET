@@ -1,0 +1,90 @@
+﻿
+@model BookMyFlight.Models.ViewModels.CustomerRegisterViewModel
+@{
+    ViewBag.Title = "CustomerRegister";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CustomerRegister</h2>
+
+<form action="/Home/CustomerRegister" method="post" class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(m => m.airline_name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input type="text" name="airline_name" value="@Model.airline_name" placeholder="Agency Name" class="form-control" />
+            <span>@Html.ValidationMessageFor(m => m.airline_name, "", new { @class = "text-danger" })</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.airline_regno, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input type="text" name="airline_regno" value="@Model.airline_regno" placeholder="Reg. No." class="form-control" />
+            <span>@Html.ValidationMessageFor(m => m.airline_regno, "", new { @class = "text-danger" })</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.airline_address, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input type="text" name="airline_address" value="@Model.airline_address" placeholder="Address" class="form-control" />
+            <span>@Html.ValidationMessageFor(m => m.airline_address, "", new { @class = "text-danger" })</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input type="text" name="email" value="@Model.email" placeholder="Eamil@example.com" class="form-control" />
+            <span>@Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.airline_phone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input type="text" name="airline_phone" value="@Model.airline_phone" placeholder="Phone" class="form-control" />
+            <span>@Html.ValidationMessageFor(m => m.airline_phone, "", new { @class = "text-danger" })</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.username, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input type="text" name="username" value="@Model.username" placeholder="Username" class="form-control" />
+            <span>@Html.ValidationMessageFor(m => m.username, "", new { @class = "text-danger" })</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.recovery_phone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input type="text" name="recovery_phone" value="@Model.recovery_phone" placeholder="Recovery Phone" class="form-control" />
+            <span>@Html.ValidationMessageFor(m => m.recovery_phone, "", new { @class = "text-danger" })</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input type="text" name="password" value="@Model.password" class="form-control" />
+            <span>@Html.ValidationMessageFor(m => m.password, "", new { @class = "text-danger" })</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input type="text" name="ConfirmPassword" value="@Model.ConfirmPassword" class="form-control" />
+            <span>@Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Register" />
+        </div>
+    </div>
+
+</form>

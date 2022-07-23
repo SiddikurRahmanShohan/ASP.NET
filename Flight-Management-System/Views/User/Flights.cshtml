@@ -1,0 +1,145 @@
+﻿@model List<Flight_Management_System.Models.TransportModelSR>
+    @using Flight_Management_System.Models.Database;
+    @{
+        Flight_ManagementEntities db = new Flight_ManagementEntities();
+        var fstopage = db.Stopages;
+        var sclass = db.SeatClassEnums;
+        string[] days = { "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+    }
+
+    @{
+        ViewBag.Title = "Flights";
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+
+
+    <h2>Flights</h2>
+    <span class="text-danger">@TempData["msg"]</span>
+
+    <form action="/User/Flights" method="post" class="form-horizontal">
+        
+        <div class="form-group">
+            <label class="col-md-2 control-label">From</label>
+            <div class="col-md-10">
+                <input name="SFS" class="form-control" id="searchInput" placeholder="Search by City/Airport" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Destination</label>
+            <div class="col-md-10">
+                <input name="STS" class="form-control" id="searchInputt" placeholder="Search by City/Airport" />
+            </div>
+        </div>
+       
+        
+         
+        <div class="form-group">
+            <label class="col-md-2 control-label">Select Seat Class</label>
+            <div class="col-md-10">
+
+                <select name="ClassId">
+                    @foreach (var fs in sclass)
+                    {
+                        <option selected value="@fs.Id">@fs.Value</option>
+                    }
+
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Travel Date</label>
+            <div class="col-md-10">
+
+             <input type="date" name="Date"  class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Search" />
+            </div>
+        </div>
+
+    </form>
+
+    @if ((Model != null) && (Model.Any()))
+      {
+          <div class="tab-content">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>From</th>
+                <th>Destination</th>
+                <th>Day</th>
+                <th>Available Seats</th>
+                <th>Date Time</th>
+                <th>Starting Fare</th>
+                <th>Go To</th>
+
+            </tr>
+            @foreach (var f in Model)
+            {
+                <tr>
+                    <td>@f.Name</td>
+                    <td>@f.FromStopage</td>
+                    <td>@f.ToStopage</td>
+                    <td>@f.Day</td>
+                    <td>@f.AvailableSeats</td>
+                    <td>@f.Date</td>
+                    <td>@f.SFare</td>
+                    <td><a href="/User/Book/@f.Id">Book</a></td>
+                </tr>
+            }
+
+        </table>
+    </div>
+ 
+      }
+      
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      
+<script>
+
+    $("#searchInput").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "GetAirports",
+                dataType: "json",
+                data: { search: $("#searchInput").val() },
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return { label: item.Acity+","+item.Aname, value: item.Aname };
+                    }));
+                },
+                error: function (xhr, status, error) {
+                    alert("Error");
+                }
+            });
+        }
+    });
+
+    $("#searchInputt").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "GetAirports",
+                dataType: "json",
+                data: { search: $("#searchInputt").val() },
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return { label: item.Acity + "," + item.Aname, value: item.Aname };
+                    }));
+                },
+                error: function (xhr, status, error) {
+                    alert("Error");
+                }
+            });
+        }
+    });
+
+</script>
+          
+      

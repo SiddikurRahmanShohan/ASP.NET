@@ -1,0 +1,115 @@
+﻿@model IEnumerable<Flight_Management_System.Models.AdminEntities.UserModel>
+@{
+    ViewBag.Title = "Userlist";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@if (TempData["msg"] != null)
+{
+    <span class="label-success">@TempData["msg"]}</span>
+}
+<h4>Search</h4>
+@using (Html.BeginForm("Userlist", "Admin", FormMethod.Post))
+{
+    @Html.TextBox("searching")
+    <input type="submit" value="Search" />
+}
+<h2>Customers</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>User Name</th>
+        <th>Location</th>
+        <th>Address</th>
+        <th>Country name</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var u in Model)
+    {
+        if (u.Role == 2)
+        {
+
+            <tr>
+                <td>@u.Name</td>
+                <td>@u.Username</td>
+                <td>@u.Address</td>
+                <td>@u.CityName, @u.CountryName</td>
+                <td>@u.CountryName</td>
+                <td>
+                    <a class="btn btn-info" href="/Admin/UserDetails/@u.Id">View Details</a>
+                    <a  class="btn btn-warning" href="/Admin/EditUserProfile/@u.Id">Edit</a>
+                    <a class="btn btn-danger" href="/Admin/DeleteUser/@u.Id">Delete</a>
+                </td>
+            </tr>
+
+        }
+    }
+</table>
+<br />
+<br />
+<h2>Flight managers</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>User Name</th>
+        <th>Location</th>
+        <th>Address</th>
+        <th>Country name</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var u in Model)
+    {
+        if (u.Role == 3)
+        {
+
+            <tr>
+                <td>@u.Name</td>
+                <td>@u.Username</td>
+                <td>@u.Address</td>
+                <td>@u.CityName, @u.CountryName</td>
+                <td>@u.CountryName</td>
+                <td>
+                    <a class="btn btn-info" href="/Admin/UserDetails/@u.Id">View Details</a>
+                    <a class="btn btn-warning" href="/Admin/EditUserProfile/@u.Id">Edit</a>
+                    <a class="btn btn-danger" href="/Admin/DeleteUser/@u.Id">Delete</a>
+                </td>
+            </tr>
+        }
+
+    }
+</table>
+<br />
+<br />
+<h2>Admins</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>User Name</th>
+        <th>Location</th>
+        <th>Address</th>
+        <th>Country name</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var u in Model)
+    {
+        if (u.Role == 1)
+        {
+
+            <tr>
+                <td>@u.Name</td>
+                <td>@u.Username</td>
+                <td>@u.Address</td>
+                <td>@u.CityName, @u.CountryName</td>
+                <td>@u.CountryName</td>
+                <td>
+                    <a class="btn btn-info" href="/Admin/UserDetails/@u.Id">View Details</a>
+                    <a class="btn btn-warning" href="/Admin/EditUserProfile/@u.Id">Edit</a>
+                    <a class="btn btn-danger" href="/Admin/DeleteUser/@u.Id">Delete</a>
+                </td>
+            </tr>
+        }
+
+    }
+</table>
+
+
+

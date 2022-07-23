@@ -1,0 +1,50 @@
+﻿@model List<Flight_Management_System.Models.AdminEntities.TransportScheduleModel>
+@{
+    ViewBag.Title = "TransportDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Flight Schedules</h2>
+
+@if (Model != null)
+{
+
+<table class="table table-bordered">
+    <tr>
+        <th>From Stopage</th>
+        <th>Destination</th>
+        <th>Maximum Seat</th>
+        <th>Day</th>
+        <th>Time</th>
+        @*<th>Operation</th>*@
+
+    </tr>
+
+
+    @foreach (var ts in Model)
+    {
+        <tr>
+
+            <td>@ts.FromAirport, @ts.FromCity, @ts.FromCountry</td>
+            <td>@ts.ToAirport, @ts.ToCity, @ts.ToCountry</td>
+            <td>@ts.MaximumSeat</td>
+            <td>@ts.Day</td>
+            <td>@ts.Time</td>
+            @*<td><a href="" class="btn btn-danger">Delete</a></td>*@
+
+        </tr>
+      }
+
+
+        
+
+    </table>
+
+   
+
+}
+
+
+
+
+

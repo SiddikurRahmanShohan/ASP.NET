@@ -1,0 +1,44 @@
+﻿
+@model List<Flight_Management_System.Models.CustomerFlightSR>
+    @{
+        ViewBag.Title = "CanceledTickets";
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+
+    <h2>Cancelled Tickets</h2>
+@if ((Model != null) && (Model.Any()))
+{
+    <div class="tab-content">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>From</th>
+                <th>Destination</th>
+                <th>Day</th>
+                <th>Seat No</th>
+                <th>Fare</th>
+                <th>Status</th>
+
+
+            </tr>
+            @foreach (var f in Model)
+            {
+                <tr>
+                    <td>@f.TName</td>
+                    <td>@f.FromStopage</td>
+                    <td>@f.ToStopage</td>
+                    <td>@f.StartTime</td>
+                    <td>@f.SeatNo</td>
+                    <td>@f.TFare</td>
+                    <td>@f.Status</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+}
+else { <span>
+    There is no cancelled tickets.
+</span>}
+

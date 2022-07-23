@@ -1,0 +1,49 @@
+﻿
+@model List<Flight_Management_System.Models.CustomerFlightSR>
+    @{
+        var Total = 0;
+    }
+    @{
+    ViewBag.Title = "Tickets";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+
+    <h2>Booked Tickets</h2>
+
+@if ((Model != null) && (Model.Any()))
+{ 
+
+    <div class="tab-content">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>From</th>
+                <th>Destination</th>
+                <th>Day</th>
+                <th>Seat No</th>
+                <th>Fare</th>
+                <th>Status</th>
+                <th>Action</th>
+                
+
+            </tr>
+            @foreach (var f in Model)
+            {
+                <tr>
+                    <td>@f.TName</td>
+                    <td>@f.FromStopage</td>
+                    <td>@f.ToStopage</td>
+                    <td>@f.StartTime</td>
+                    <td>@f.SeatNo</td>
+                    <td>@f.TFare</td>
+                    <td>@f.Status</td>
+                    <td>@if (f.Status == "Booked"){<a href="/User/Cancel/@f.TktId">Cancel</a>}</td>
+                </tr>
+                if (f.Status == "Booked") { Total = Total + f.TFare ?? -1; }
+            }
+
+        </table>
+        <P>Total Spent Amount : @Total</P>
+    </div>
+}
+else {<span>No Booked Tickets</span> }
